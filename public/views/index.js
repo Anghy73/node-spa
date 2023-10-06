@@ -16,5 +16,5 @@ export default {
   home,
   about,
   contact,
-  notFound
-}
+  notFound,
+};

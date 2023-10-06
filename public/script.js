@@ -1,9 +1,9 @@
 import { router } from "./routes/index.routes.js";
 
 function loadContent() {
-  router(window.location.hash)
+  router(window.location.hash);
 }
 
-window.addEventListener('hashchange', loadContent);
+window.addEventListener("hashchange", loadContent);
 
 loadContent();
