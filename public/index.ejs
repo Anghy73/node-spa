@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,69 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" type="module" defer></script>
 </head>
+
 <body>
-  <h1><%= title %></h1>
-  <a href="#">home</a>
-  <a href="#about">about</a>
-  <a href="#contact">contact</a>
-  <div id="app"></div>
+  <header class="header">
+    <h1 class="header__logo">
+      <%= title %>
+    </h1>
+    <nav class="header__nav">
+      <ul class="header__content">
+        <li class="header__item">
+          <a class="header__link" href="#">Home</a>
+        </li>
+        <li class="header__item">
+          <a class="header__link" href="#about">About</a>
+        </li>
+        <li class="header__item">
+          <a class="header__link" href="#contact">Contact</a>
+        </li>
+        <div class="point"></div>
+      </ul>
+    </nav>
+  </header>
+  <main class="main">
+    <div id="app" class="app"></div>
+  </main>
+  <script>
+    function movePoint() {
+      let path = window.location.hash
+      const links = document.querySelectorAll('.header__link')
+      links.forEach((link) => {
+        let point = document.querySelector('.point')
+        let element = link
+        if (window.innerWidth > 800) {
+          if (link.getAttribute('href') === path) {
+            point.style.top = (28 + element.offsetTop) + 'px';
+            point.style.left = (12 + element.offsetLeft) + 'px';
+          }
+
+          link.addEventListener('click', (e) => {
+            point.style.top = (28 + e.target.offsetTop) + 'px'
+            point.style.left = (12 + e.target.offsetLeft) + 'px';
+          })
+        } else if (window.innerWidth > 660) {
+          point.style.display = 'block'
+          if (link.getAttribute('href') === path) {
+            console.log('hola');
+            point.style.top = (28 + element.offsetTop) + 'px';
+            point.style.left = (10 + element.offsetLeft) + 'px';
+          }
+
+          link.addEventListener('click', (e) => {
+            point.style.top = (28 + e.target.offsetTop) + 'px';
+            point.style.left = (10 + e.target.offsetLeft) + 'px'
+          })
+        } else if (window.innerWidth < 659) {
+          point.style.display = 'none'
+        }
+      })
+    }
+
+    movePoint()
+
+    window.addEventListener('resize', movePoint)
+  </script>
 </body>
+
 </html>
